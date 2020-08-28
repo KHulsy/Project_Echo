@@ -1,0 +1,100 @@
+
+Welcome
+Getting Started
+Configuration
+Projects
+SETTINGS
+Settings Overview
+GitHub and Bitbucket
+Enabling GitHub Checks
+Open Source Projects
+Using Notifications
+Connect with JIRA
+Managing API tokens
+Environment Variables
+Using Contexts
+Enabling Pipelines
+iOS Code Signing
+OPTIMIZATIONS
+Optimization Overview
+Caching Dependencies
+Running Tests in Parallel
+Docker Layer Caching
+Optimizations Cookbook
+Pipelines
+Deployment
+Reference
+Server Administration
+
+English
+Sample config.yml Files
+This document provides sample .circleci/config.yml files, as follows:
+
+Simple Configuration Examples
+Concurrent Workflow
+Sequential Workflow
+Approval Job
+Sample Configuration with Sequential Workflow
+Sample Configuration with Fan-in/Fan-out Workflow
+Sample Configuration with Multiple Executor Types
+Simple Configuration Examples
+Concurrent Workflow
+The configuration example below shows a concurrent workflow in which the build and test jobs run at the same time. Refer to the Workflows document for complete details about orchestrating job runs with concurrent, sequential, and manual approval workflows.
+
+This image shows the workflow view for the following configuration example: Concurrent Workflow Map
+
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: echo "this is the build job"
+  test:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test
+Cloud
+Server
+Sequential Workflow
+The configuration example below shows a sequential job workflow where the build job runs and then the test job runs once build has completed. Refer to the Workflows document for complete details about orchestrating job runs with concurrent, sequential, and manual approval workflows.
+
+This image shows the workflow view for the following configuration example, in which jobs run sequentially; one after the other: Sequential Workflow Map
+
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: echo "this is the build job"
+  test:
+    docker:
+      - image: circleci/<language>:<version TAG>
+    steps:
+      - checkout
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
