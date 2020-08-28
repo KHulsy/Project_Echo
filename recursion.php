@@ -1,7 +1,7 @@
 <?php
 //PHP program to demonstrate//working of recursion
 //Jerome has this under the expectations with no information connected to the link.
-//Seriously. It just says the word Recurion.
+//Seriously. It just says the word Recursion.
 //Evidently, it needs to be included.
 //How is babby formed?
 <?php>
