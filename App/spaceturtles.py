@@ -1,3 +1,4 @@
+(Disclaimer: This was found via Google Fu. I in no way, shape or form coded this. This is absolutely not my work. This is inspiration for Project 3).
 # Click in the righthand window to make it active then use your arrow
 # keys to control the spaceship!
 import turtle
